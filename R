@@ -1,0 +1,52 @@
+get_brain_targets = function(disorder) {
+  d = tolower(disorder)
+  
+  if (d == "autism") {
+    return(c(
+      "Broca's area - Left frontal lobe, above temple, slightly forward of ear",
+      "Anterior cingulate cortex - Top of head, slightly forward",
+      "Posterior cingulate cortex - Back top of head",
+      "Cerebellum - Back of head, just above the neck/hairline"
+    ))
+  }
+  
+  if (d == "adhd") {
+    return(c(
+      "Dorsolateral prefrontal cortex (DLPFC) - Forehead area, above eyebrows",
+      "Anterior cingulate cortex - Top middle of head",
+      "Cerebellum - Back of head, just above neck",
+      "Thalamus - Deep center of head, can be reached from top middle"
+    ))
+  }
+  
+  if (d == "depression") {
+    return(c(
+      "Subgenual ACC (Area 25) - Middle of forehead, just above nose bridge",
+      "DLPFC - Forehead above eyebrows",
+      "Amygdala - Just above ear, slightly forward"
+    ))
+  }
+  
+  if (d == "schizophrenia") {
+    return(c(
+      "Dorsolateral prefrontal cortex (DLPFC) - Forehead, upper-left and upper-right",
+      "Anterior cingulate cortex - Top center of the head",
+      "Hippocampus - Above and slightly behind the ears",
+      "Cerebellum - Back of the head, just above neck"
+    ))
+  }
+  
+  if (d == "bipolar") {
+    return(c(
+      "Amygdala - Just above and slightly forward of the ears",
+      "Orbitofrontal cortex - Above the eyes, slightly to the sides",
+      "DLPFC - Forehead, upper-left and upper-right",
+      "Cerebellum - Back of head, just above neck"
+    ))
+  }
+  
+  return("Disorder not in list. Try: Autism, ADHD, Depression, Schizophrenia, Bipolar.")
+}
+
+#Example use:
+#get_brain_targets("Schizophrenia")
