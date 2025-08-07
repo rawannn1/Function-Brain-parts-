@@ -1,52 +1,148 @@
-get_brain_targets = function(disorder) {
-  d = tolower(disorder)
+get_brain_targets <- function(disorder) {
+  d <- tolower(disorder)
   
-  if (d == "autism") {
-    return(c(
-      "Broca's area - Left frontal lobe, above temple, slightly forward of ear",
-      "Anterior cingulate cortex - Top of head, slightly forward",
-      "Posterior cingulate cortex - Back top of head",
-      "Cerebellum - Back of head, just above the neck/hairline"
-    ))
+  brain_targets <- list(
+    adhd = list(
+      list(
+        region = "Dorsolateral prefrontal cortex (DLPFC)",
+        location = "Forehead area, above eyebrows",
+        reason = "Involved in executive function and attention. Often underactive in ADHD, so stimulation may improve focus and impulse control."
+      ),
+      list(
+        region = "Anterior cingulate cortex",
+        location = "Top middle of head",
+        reason = "Involved in error detection and emotional regulation. Dysfunction here is linked to attention deficits."
+      ),
+      list(
+        region = "Cerebellum",
+        location = "Back of head, just above neck",
+        reason = "Plays a role in motor control and timing. Abnormal activity may contribute to hyperactivity and poor coordination in ADHD."
+      ),
+      list(
+        region = "Thalamus",
+        location = "Deep center of head, can be reached from top middle",
+        reason = "Acts as a relay for attention and sensory processing. Altered thalamic activity is seen in ADHD brain scans."
+      )
+    ),
+    
+    autism = list(
+      list(
+        region = "Broca's area",
+        location = "Left frontal lobe, above temple, slightly forward of ear",
+        reason = "Involved in language production. Often underdeveloped or irregular in people with autism, which may relate to speech issues."
+      ),
+      list(
+        region = "Anterior cingulate cortex",
+        location = "Top of head, slightly forward",
+        reason = "Important for social awareness and empathy. Atypical function may relate to social difficulties in autism."
+      ),
+      list(
+        region = "Posterior cingulate cortex",
+        location = "Back top of head",
+        reason = "Involved in self-referential thinking. May be underactive in autism, affecting self-awareness."
+      ),
+      list(
+        region = "Cerebellum",
+        location = "Back of head, just above the neck/hairline",
+        reason = "Supports coordination and sensory integration. Structural differences are commonly seen in autistic individuals."
+      )
+    ),
+    
+    depression = list(
+      list(
+        region = "Subgenual ACC (Area 25)",
+        location = "Middle of forehead, just above nose bridge",
+        reason = "Strongly associated with sadness and mood regulation. Overactive in treatment-resistant depression."
+      ),
+      list(
+        region = "DLPFC",
+        location = "Forehead above eyebrows",
+        reason = "Often underactive in depression. Stimulating it can improve motivation and decision-making."
+      ),
+      list(
+        region = "Amygdala",
+        location = "Just above ear, slightly forward",
+        reason = "Processes fear and negative emotion. Often hyperactive in depressed individuals."
+      )
+    ),
+    
+    schizophrenia = list(
+      list(
+        region = "DLPFC",
+        location = "Forehead, upper-left and upper-right",
+        reason = "Linked to working memory and decision-making. Dysfunction here contributes to disorganized thought."
+      ),
+      list(
+        region = "Anterior cingulate cortex",
+        location = "Top center of the head",
+        reason = "Disrupted activity relates to impaired emotion regulation and attention deficits."
+      ),
+      list(
+        region = "Hippocampus",
+        location = "Above and slightly behind the ears",
+        reason = "Critical for memory. Often shrunken or dysfunctional in schizophrenia."
+      ),
+      list(
+        region = "Cerebellum",
+        location = "Back of the head, just above neck",
+        reason = "Linked to motor coordination and cognitive timing. Deficits here may contribute to sensory gating issues."
+      )
+    ),
+    
+    bipolar = list(
+      list(
+        region = "Amygdala",
+        location = "Just above and slightly forward of the ears",
+        reason = "Hyperactive during mood episodes. Regulating it can help manage emotional swings."
+      ),
+      list(
+        region = "Orbitofrontal cortex",
+        location = "Above the eyes, slightly to the sides",
+        reason = "Involved in impulse control and mood regulation. Often shows abnormal activity in bipolar disorder."
+      ),
+      list(
+        region = "DLPFC",
+        location = "Forehead, upper-left and upper-right",
+        reason = "Underactivity during depression, overactivity in mania. Target for stabilizing mood."
+      ),
+      list(
+        region = "Cerebellum",
+        location = "Back of head, just above neck",
+        reason = "Helps regulate emotional timing. Often overlooked but significant in bipolar processing."
+      )
+    ),
+    
+    ptsd = list(
+      list(
+        region = "Amygdala",
+        location = "Just above the ear, forward and deep",
+        reason = "Processes fear and threat. Overactive in PTSD, leading to hypervigilance and flashbacks."
+      ),
+      list(
+        region = "Hippocampus",
+        location = "Above and behind the ear",
+        reason = "Involved in memory and context. Often reduced in size in PTSD, causing difficulty distinguishing past from present."
+      ),
+      list(
+        region = "Prefrontal cortex",
+        location = "Forehead area",
+        reason = "Normally calms the amygdala. In PTSD it’s underactive, reducing emotional regulation."
+      ),
+      list(
+        region = "Anterior cingulate cortex",
+        location = "Top middle of head",
+        reason = "Regulates attention and emotion. Often disrupted, contributing to overreaction to stress."
+      )
+    )
+  )
+  
+  if (d %in% names(brain_targets)) {
+    return(brain_targets[[d]])
+  } else {
+    return("Disorder not in list. Try: Autism, ADHD, Depression, Schizophrenia, Bipolar, PTSD.")
   }
-  
-  if (d == "adhd") {
-    return(c(
-      "Dorsolateral prefrontal cortex (DLPFC) - Forehead area, above eyebrows",
-      "Anterior cingulate cortex - Top middle of head",
-      "Cerebellum - Back of head, just above neck",
-      "Thalamus - Deep center of head, can be reached from top middle"
-    ))
-  }
-  
-  if (d == "depression") {
-    return(c(
-      "Subgenual ACC (Area 25) - Middle of forehead, just above nose bridge",
-      "DLPFC - Forehead above eyebrows",
-      "Amygdala - Just above ear, slightly forward"
-    ))
-  }
-  
-  if (d == "schizophrenia") {
-    return(c(
-      "Dorsolateral prefrontal cortex (DLPFC) - Forehead, upper-left and upper-right",
-      "Anterior cingulate cortex - Top center of the head",
-      "Hippocampus - Above and slightly behind the ears",
-      "Cerebellum - Back of the head, just above neck"
-    ))
-  }
-  
-  if (d == "bipolar") {
-    return(c(
-      "Amygdala - Just above and slightly forward of the ears",
-      "Orbitofrontal cortex - Above the eyes, slightly to the sides",
-      "DLPFC - Forehead, upper-left and upper-right",
-      "Cerebellum - Back of head, just above neck"
-    ))
-  }
-  
-  return("Disorder not in list. Try: Autism, ADHD, Depression, Schizophrenia, Bipolar.")
 }
 
-#Example use:
-#get_brain_targets("Schizophrenia")
+# Example usage:
+# result <- get_brain_targets("ADHD")
+# print(result)
